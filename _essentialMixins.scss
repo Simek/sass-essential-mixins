@@ -1,0 +1,62 @@
+// Essential Mixins by Simek [0.0.1]
+
+// Global Variables
+
+$prefixes: -webkit-, -moz-, -o-, "";
+
+// Propert: border-radius
+
+@mixin borderRadius($size...) {
+	@if length($size) == 1 {
+		@each $prefix in $prefixes {
+			#{$prefix}border-radius: $size;
+		}
+	} @else {
+		@include customBorderRadius($size...);
+	}
+}
+
+@mixin customBorderRadius($topLeft: 0, $topRight: 0, $bottomRight: 0, $bottomLeft: 0) {
+	@each $prefix in $prefixes {
+		@if $prefix == "-moz-" {
+			@if $topLeft != 0 { -moz-border-radius-topleft: $topLeft; }
+			@if $topRight != 0 { -moz-border-radius-topright: $topRight; }
+			@if $bottomRight != 0 { -moz-border-radius-bottomright: $bottomRight; }
+			@if $bottomLeft != 0 { -moz-border-radius-bottomleft: $bottomLeft; }
+		} @else {
+			@if $topLeft != 0 { #{$prefix}border-top-left-radius: $topLeft; }
+			@if $topRight != 0 { #{$prefix}border-top-right-radius: $topRight; }
+			@if $bottomRight != 0 { #{$prefix}border-bottom-right-radius: $bottomRight; }
+			@if $bottomLeft != 0 { #{$prefix}border-bottom-left-radius: $bottomLeft; }
+		}
+	}
+}
+
+// Propert: user-select
+
+@mixin selection($type) {
+	@each $prefix in $prefixes {
+		#{$prefix}user-select: $type;
+	}
+}
+
+@mixin noSelection {
+	@include selection(none);
+}
+
+// Propert: box-sizing
+
+@mixin boxSizing($type: border-box) {
+	@each $prefix in $prefixes {
+		#{$prefix}box-sizing: $type;
+	}
+}
+
+// Property: background
+// Value: linear-gradient
+
+@mixin linearGradient($properties...) {
+	@each $prefix in $prefixes {
+		background: #{$prefix}linear-gradient($properties);
+	}
+}
