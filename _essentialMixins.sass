@@ -1,4 +1,4 @@
-// Essential Mixins by Simek [0.0.1]
+// Essential Mixins by Simek [0.0.2]
 
 // Global Variables
 
@@ -54,4 +54,23 @@ $prefixes: -webkit-, -moz-, -o-, ""
 
 =linearGradient($properties...)
   @each $prefix in $prefixes
-    background: #{$prefix}linear-gradient($properties)
+    background-image: #{$prefix}linear-gradient($properties)
+
+// Property: box-shadow
+=boxShadow($properties...)
+  @each $prefix in $prefixes
+    #{$prefix}box-shadow: $properties
+
+// [Layout] Centered Node
+
+=centeredNode($width, $height, $correctTop: 0, $correctLeft: 0)
+  +size($width, $height)
+  position: absolute
+  top: 50%
+  left: 50%
+  margin-top: -$height / 2 + $correctTop
+  margin-left: -$width / 2 + $correctLeft
+
+=size($width, $height)
+  width: $width
+  height: $height

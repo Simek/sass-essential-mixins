@@ -1,0 +1,240 @@
+// IMPORTS
+// ==========================
+
+// CSS Reset
+@import "reset";
+
+// Base Font
+@import url("http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700");
+
+// Code Font
+@import url("http://fonts.googleapis.com/css?family=Droid+Sans+Mono");
+
+// Essential Mixins
+@import "../../essentialMixins";
+
+// Demo Examples
+@import "../demoExamples";
+
+// INTERNAL VARIABLES
+// ==========================
+
+$sidebarWidth: 360px;
+$defaultPadding: 24px;
+$sassColor: #CE4DD6;
+
+// INTERNAL MIXINS
+// ==========================
+
+@mixin baseFont { 
+	font: {
+		family: "Open Sans Condensed", sans-serif;
+		weight: 300;
+		size: 22px;
+	}
+	line-height: 1.5;
+}
+
+@mixin headerFont($size: 0) {
+	font: {
+		family: "Open Sans Condensed", sans-serif;
+		weight: 700;
+		@if ($size != 0) {
+			size: $size;
+		}
+	}
+	line-height: 1.5;
+	color: #333;
+}
+
+@mixin bottomLine {
+	border-bottom: 4px solid $sassColor;
+}
+
+@mixin radius {
+	@include borderRadius(4px);
+}
+
+@mixin transition($property) {
+	transition: $property 0.4s ease 0s;
+	-moz-transition: $property 0.4s ease 0s;
+	-webkit-transition: $property 0.4s ease 0s;
+	-o-transition: $property 0.4s ease 0s;
+}
+
+// STYLING
+// ==========================
+
+h1 {
+	@include headerFont(36px);
+	@include bottomLine;
+}	
+
+h2 {
+	@include headerFont(28px);
+	clear: both;
+}
+
+p {
+	@include baseFont;
+	margin: 1.5em 0;
+}
+
+aside {
+	position: fixed;
+	width: $sidebarWidth;
+	height: 100%;
+
+	@include boxSizing;
+	padding: $defaultPadding;
+
+	background: #f4f4f4;
+	border-right: 1px solid #ededed;
+
+	h2 {
+		@include bottomLine;
+	}
+}
+
+#mixin-list {
+	list-style: none;
+	margin: 1.5em 0;
+
+	li {
+		padding-left: 16px;
+		@include baseFont;
+		cursor: pointer;
+		@include transition(color);
+
+		&:before {
+			content: "» ";
+		}
+
+		&:hover {
+			color: $sassColor;
+		}
+	}
+}
+
+#language-switch {
+	width: 214px;
+	height: 104px;
+	margin: 0 auto;
+	background: url(images/switch.png);
+	@include boxSizing;
+	padding: 24px 21px;
+
+	button {
+		width: 85px;
+		height: 56px;
+		float: left;
+		overflow: hidden;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		text-align: center;
+		@include headerFont(24px);
+		@include boxSizing;
+		cursor: pointer;
+		color: #777;
+		@include transition(color);
+
+		&:hover {
+			color: #444;
+		}
+
+		&#sass {
+			text-align: left;
+			padding-left: 14px;
+			margin-left: 2px;
+
+			&.active {
+				background: url(images/switch-buttons-sprite.png) -85px 0;
+			}
+		}
+
+		&#scss {
+			text-align: right;
+			padding-right: 14px;
+
+			&.active {
+				background: url(images/switchbuttons-sprite.png) 0 0;
+			}
+		}
+
+		&.active {
+			text-shadow: 1px 1px 2px rgba(40,40,40,.3);
+			color: $sassColor !important;
+		}
+	}
+}
+
+article {
+	@include boxSizing;
+	padding: $defaultPadding;
+	padding-left: $sidebarWidth + $defaultPadding;
+
+	h2 {
+		margin-bottom: 12px;
+	}
+}
+
+code {
+	font: {
+		family: 'Droid Sans Mono', monospace;
+		size: 15px;
+		color: $sassColor;
+	}
+	padding: 8px 12px;
+	line-height: 1.5;
+	display: inline-block;
+	background: lighten($sassColor, 40);
+	border: 1px solid lighten($sassColor, 20);
+	@include radius;
+
+	&.parameters {
+		float: right;
+		font-weight: normal;
+	}
+}
+
+.demo-wrapper {
+	width: 100%;
+	clear: both;
+	display: block;
+	float: left;
+
+	.demo {
+		float: left;
+		width: 480px;
+		min-height: 320px;
+		display: block;
+		margin: 8px;
+		background: #fff;
+		position: relative;
+		@include boxShadow(inset 0 0 36px rgba(30,30,30,.1));
+		border: 1px solid #ededed;
+		@include radius;
+		@include boxSizing;
+
+		code {
+			width: 480px;
+			position: absolute;
+			bottom: -1px;
+			left: -1px;
+			@include borderRadius(0, 0, 4px, 4px);
+			@include boxSizing;
+		}
+	}
+}
+
+.example {
+	@include boxShadow(0 0 32px rgba(30,30,30,.1));
+}
+
+#borderRadius {
+	.example {
+		border: 5px solid $sassColor;
+		@include centeredNode(120px, 120px, -20px);
+	}
+}
