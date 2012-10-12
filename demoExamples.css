@@ -1,0 +1,31 @@
+#borderRadius .same-radius {
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -o-border-radius: 16px;
+  border-radius: 16px; }
+#borderRadius .custom-radius {
+  -webkit-border-top-left-radius: 16px;
+  -webkit-border-top-right-radius: 24px;
+  -webkit-border-bottom-right-radius: 16px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-topleft: 16px;
+  -moz-border-radius-topright: 24px;
+  -moz-border-radius-bottomright: 16px;
+  -moz-border-radius-bottomleft: 4px;
+  -o-border-top-left-radius: 16px;
+  -o-border-top-right-radius: 24px;
+  -o-border-bottom-right-radius: 16px;
+  -o-border-bottom-left-radius: 4px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 4px; }
+#borderRadius .top-line-only {
+  -webkit-border-top-left-radius: 24px;
+  -webkit-border-top-right-radius: 24px;
+  -moz-border-radius-topleft: 24px;
+  -moz-border-radius-topright: 24px;
+  -o-border-top-left-radius: 24px;
+  -o-border-top-right-radius: 24px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px; }

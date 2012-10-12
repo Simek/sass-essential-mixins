@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Examples :: SASS Essential Mixins</title>
+
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function() {
+    		$("#mixin-list li").on("click", function() {
+	   			window.location.href = "#" + $(this).html();
+ 			});
+
+  			$("#language-switch button").on("click", function() {
+  				if (!$(this).hasClass("active")) {
+ 					$("button").toggleClass("active");
+ 					$(".demo code").hide();
+ 					$("." + $(this).attr('id')).show();
+ 				}
+ 			});
+		});
+	</script>
+
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<aside>
+		<h1>SASS Essential Mixins</h1>
+		<p>Set of useful SASS/SCSS mixins for lazy front end developers.</p>
+		<div id="language-switch">
+			<button id="scss" class="active">SCSS</button>
+			<button id="sass">SASS</button>
+		</div>
+		<h2>Mixin list</h2>
+		<ul id="mixin-list">
+			<li>borderRadius</li>
+			<li>selection</li>
+			<li>noSelection</li>
+			<li>linearGradient</li>
+		</ul>
+	</aside>
+
+	<article>
+		<section id="borderRadius">
+			<h2>
+				<span>borderRadius</span>
+				<code class="parameters">($size...)</code>
+			</h2>
+			<p>Parameters are passed in standard CSS order (top-left, top-right, bottom-right, bottom-left). Omited values will be replaced by 0.
+			<div class="demo-wrapper">
+				<div class="demo">
+					<div class="example same-radius"></div>
+					<code class="sass">+borderRadius(16px)</code>
+					<code class="scss">@include borderRadius(16px);</code>
+				</div>
+				<div class="demo">
+					<div class="example custom-radius"></div>
+					<code class="sass">+borderRadius(16px, 24px, 16px, 4px)</code>
+					<code class="scss">@include borderRadius(16px, 24px, 16px, 4px);</code>
+				</div>
+				<div class="demo">
+					<div class="example top-line-only"></div>
+					<code class="sass">+borderRadius(24px, 24px)</code>
+					<code class="scss">@include borderRadius(24px, 24px);</code>
+				</div>
+			</div>
+		</section>
+		
+		<h2 id="selection">selection</h2>
+		<code>selection($type)</code>
+		<h2 id="noSelection">noSelection</h2>
+		<code>noSelection</code>
+		<h2 id="linearGradient">linearGradient</h2>
+		<code>linearGradient($properties...)</code>
+	</article>
+</body>
+</html>
