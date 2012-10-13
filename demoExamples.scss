@@ -1,3 +1,5 @@
+@import "../essentialMixins";
+
 #borderRadius {
 	.same-radius {
 		@include borderRadius(16px);
@@ -9,5 +11,15 @@
 
 	.top-line-only {
 		@include borderRadius(24px, 24px);
+	}
+}
+
+#selection {
+	.select-text {
+		@include selection(text);
+	}
+
+	.no-select {
+		@include noSelection;
 	}
 }

@@ -34,7 +34,6 @@
 		<ul id="mixin-list">
 			<li>borderRadius</li>
 			<li>selection</li>
-			<li>noSelection</li>
 			<li>linearGradient</li>
 		</ul>
 	</aside>
@@ -45,7 +44,7 @@
 				<span>borderRadius</span>
 				<code class="parameters">($size...)</code>
 			</h2>
-			<p>Parameters are passed in standard CSS order (top-left, top-right, bottom-right, bottom-left). Omited values will be replaced by 0.
+			<p>Sets "border-radius" property. Parameters are passed in standard CSS order (top-left, top-right, bottom-right, bottom-left). Omited values will be replaced by 0.
 			<div class="demo-wrapper">
 				<div class="demo">
 					<div class="example same-radius"></div>
@@ -64,13 +63,33 @@
 				</div>
 			</div>
 		</section>
-		
-		<h2 id="selection">selection</h2>
-		<code>selection($type)</code>
-		<h2 id="noSelection">noSelection</h2>
-		<code>noSelection</code>
-		<h2 id="linearGradient">linearGradient</h2>
-		<code>linearGradient($properties...)</code>
+
+		<section id="selection">
+			<h2>
+				<span>selection</span>
+				<code class="parameters">selection($type)</code>
+			</h2>
+			<p>Sets "user-select" property. Has "noSelection" child mixin which passes "none" value property as default.</p>
+			<div class="demo-wrapper">
+				<div class="demo">
+					<div class="example select-text">Only text could be selected, no nodes.</div>
+					<code class="sass">+selection(text)</code>
+					<code class="scss">@include selection(text);</code>
+				</div>
+				<div class="demo">
+					<div class="example no-select">You can't select me!</div>
+					<code class="sass">+noSelection</code>
+					<code class="scss">@include noSelection;</code>
+				</div>
+			</div>
+		</section>
+
+		<section id="linearGradient">
+			<h2>
+				<span>linearGradient</span>
+				<code class="parameters">($properties...)</code>
+			</h2>
+		</section>
 	</article>
 </body>
 </html>

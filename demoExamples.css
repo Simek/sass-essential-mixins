@@ -29,3 +29,14 @@
   -o-border-top-right-radius: 24px;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px; }
+
+#selection .select-text {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text; }
+#selection .no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
