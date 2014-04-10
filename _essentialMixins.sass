@@ -61,11 +61,11 @@ $extendedPrefixes: -webkit-, -moz-, -ms-, -o-, ""
   @each $prefix in $extendedPrefixes
     background: #{$prefix}linear-gradient($properties)
 
-// Property: apperance
+// Property: appearance
 
-=apperance($property)
+=appearance($property)
   @each $prefix in $narrowPrefixes
-    #{$prefix}apperance: $property
+    #{$prefix}appearance: $property
 
 // Layout: Center node in viewport
 

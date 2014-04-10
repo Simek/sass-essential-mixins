@@ -83,11 +83,11 @@ $extendedPrefixes: -webkit-, -moz-, -ms-, -o-, "";
 	}
 }
 
-// Property: apperance
+// Property: appearance
 
-@mixin apperance($property) {
+@mixin appearance($property) {
 	@each $prefix in $narrowPrefixes {
-		#{$prefix}apperance: $property;
+		#{$prefix}appearance: $property;
 	}
 }
 
