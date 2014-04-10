@@ -2,13 +2,15 @@
 
 // Global Variables
 
-$prefixes: -webkit-, -moz-, -o-, "";
+$narrowPrefixes: -webkit-, -moz-, "";
+$defaultPrefixes: -webkit-, -moz-, -o-, "";
+$extendedPrefixes: -webkit-, -moz-, -ms-, -o-, "";
 
 // Propert: border-radius
 
 @mixin borderRadius($size...) {
 	@if length($size) == 1 {
-		@each $prefix in $prefixes {
+		@each $prefix in $defaultPrefixes {
 			#{$prefix}border-radius: $size;
 		}
 	} @else {
@@ -17,17 +19,33 @@ $prefixes: -webkit-, -moz-, -o-, "";
 }
 
 @mixin customBorderRadius($topLeft: 0, $topRight: 0, $bottomRight: 0, $bottomLeft: 0) {
-	@each $prefix in $prefixes {
+	@each $prefix in $defaultPrefixes {
 		@if $prefix == "-moz-" {
-			@if $topLeft != 0 { -moz-border-radius-topleft: $topLeft; }
-			@if $topRight != 0 { -moz-border-radius-topright: $topRight; }
-			@if $bottomRight != 0 { -moz-border-radius-bottomright: $bottomRight; }
-			@if $bottomLeft != 0 { -moz-border-radius-bottomleft: $bottomLeft; }
+			@if $topLeft != 0 {
+				-moz-border-radius-topleft: $topLeft;
+			}
+			@if $topRight != 0 {
+				-moz-border-radius-topright: $topRight;
+			}
+			@if $bottomRight != 0 {
+				-moz-border-radius-bottomright: $bottomRight;
+			}
+			@if $bottomLeft != 0 {
+				-moz-border-radius-bottomleft: $bottomLeft;
+			}
 		} @else {
-			@if $topLeft != 0 { #{$prefix}border-top-left-radius: $topLeft; }
-			@if $topRight != 0 { #{$prefix}border-top-right-radius: $topRight; }
-			@if $bottomRight != 0 { #{$prefix}border-bottom-right-radius: $bottomRight; }
-			@if $bottomLeft != 0 { #{$prefix}border-bottom-left-radius: $bottomLeft; }
+			@if $topLeft != 0 {
+				#{$prefix}border-top-left-radius: $topLeft;
+			}
+			@if $topRight != 0 {
+				#{$prefix}border-top-right-radius: $topRight;
+			}
+			@if $bottomRight != 0 {
+				#{$prefix}border-bottom-right-radius: $bottomRight;
+			}
+			@if $bottomLeft != 0 {
+				#{$prefix}border-bottom-left-radius: $bottomLeft;
+			}
 		}
 	}
 }
@@ -35,7 +53,7 @@ $prefixes: -webkit-, -moz-, -o-, "";
 // Propert: user-select
 
 @mixin selection($type) {
-	@each $prefix in $prefixes {
+	@each $prefix in $defaultPrefixes {
 		#{$prefix}user-select: $type;
 	}
 }
@@ -47,28 +65,33 @@ $prefixes: -webkit-, -moz-, -o-, "";
 // Propert: box-sizing
 
 @mixin boxSizing($type: border-box) {
-	@each $prefix in $prefixes {
+	@each $prefix in $defaultPrefixes {
 		#{$prefix}box-sizing: $type;
 	}
+}
+
+@mixin noBoxSizing() {
+	@include boxSizing(content-box !important);
 }
 
 // Property: background
 // Value: linear-gradient
 
 @mixin linearGradient($properties...) {
-	@each $prefix in $prefixes {
-		background-image: #{$prefix}linear-gradient($properties);
+	@each $prefix in $extendedPrefixes {
+		background: #{$prefix}linear-gradient($properties);
 	}
 }
 
-// Property: box-shadow
-@mixin boxShadow($properties...) {
-	@each $prefix in $prefixes {
-		#{$prefix}box-shadow: $properties;
+// Property: apperance
+
+@mixin apperance($property) {
+	@each $prefix in $narrowPrefixes {
+		#{$prefix}apperance: #$property;
 	}
 }
 
-// [Layout] Centered Node
+// Layout: Center node in viewport
 
 @mixin centeredNode($width, $height, $correctTop: 0, $correctLeft: 0) {
 	@include size($width, $height);
@@ -79,7 +102,7 @@ $prefixes: -webkit-, -moz-, -o-, "";
 	margin-left: (-$width / 2) + $correctLeft;
 }
 
-	@mixin size($width, $height) {
-		width: $width;
-		height: $height;
-	}
+@mixin size($width, $height) {
+	width: $width;
+	height: $height;
+}
