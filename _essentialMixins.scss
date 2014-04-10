@@ -87,7 +87,7 @@ $extendedPrefixes: -webkit-, -moz-, -ms-, -o-, "";
 
 @mixin apperance($property) {
 	@each $prefix in $narrowPrefixes {
-		#{$prefix}apperance: #$property;
+		#{$prefix}apperance: $property;
 	}
 }
 

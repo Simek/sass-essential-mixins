@@ -2,19 +2,21 @@
 
 // Global Variables
 
-$prefixes: -webkit-, -moz-, -o-, ""
+$narrowPrefixes: -webkit-, -moz-, ""
+$defaultPrefixes: -webkit-, -moz-, -o-, ""
+$extendedPrefixes: -webkit-, -moz-, -ms-, -o-, ""
 
 // Propert: border-radius
 
 =borderRadius($size...)
   @if length($size) == 1
-    @each $prefix in $prefixes
+    @each $prefix in $defaultPrefixes
       #{$prefix}border-radius: $size
   @else
     +customBorderRadius($size...)
 
 =customBorderRadius($topLeft: 0, $topRight: 0, $bottomRight: 0, $bottomLeft: 0)
-  @each $prefix in $prefixes
+  @each $prefix in $defaultPrefixes
     @if $prefix == "-moz-"
       @if $topLeft != 0
         -moz-border-radius-topleft: $topLeft
@@ -37,7 +39,7 @@ $prefixes: -webkit-, -moz-, -o-, ""
 // Propert: user-select
 
 =selection($type)
-  @each $prefix in $prefixes
+  @each $prefix in $defaultPrefixes
     #{$prefix}user-select: $type
 
 =noSelection
@@ -46,22 +48,26 @@ $prefixes: -webkit-, -moz-, -o-, ""
 // Propert: box-sizing
 
 =boxSizing($type: border-box)
-  @each $prefix in $prefixes
+  @each $prefix in $defaultPrefixes
     #{$prefix}box-sizing: $type
+
+=noBoxSizing
+  +boxSizing(content-box !important)
 
 // Property: background
 // Value: linear-gradient
 
 =linearGradient($properties...)
-  @each $prefix in $prefixes
-    background-image: #{$prefix}linear-gradient($properties)
+  @each $prefix in $extendedPrefixes
+    background: #{$prefix}linear-gradient($properties)
 
-// Property: box-shadow
-=boxShadow($properties...)
-  @each $prefix in $prefixes
-    #{$prefix}box-shadow: $properties
+// Property: apperance
 
-// [Layout] Centered Node
+=apperance($property)
+  @each $prefix in $narrowPrefixes
+    #{$prefix}apperance: $property
+
+// Layout: Center node in viewport
 
 =centeredNode($width, $height, $correctTop: 0, $correctLeft: 0)
   +size($width, $height)
